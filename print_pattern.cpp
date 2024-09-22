@@ -16,7 +16,7 @@ using namespace std;
 
 /**
  * * Pattern List
- * * 1 = Triangle, 2 = Pyramid, 3 = Diamond, 4 = Hourglass, 5 = Pascal Triangle
+ * * 1 = Pyramid, 2 = Diamond, 3 = Hourglass, 4 = Pascal Triangle
  * 
  * * Style List
  * * 1 = Regular, 2 = Outline
@@ -28,18 +28,17 @@ namespace input {
     bool input_valid = false;
 
     while (!input_valid) {
-      cout << "1. Segitiga siku-siku\n";
-      cout << "2. Piramida\n";
-      cout << "3. Belah Ketupat\n";
-      cout << "4. Hourglass\n";
-      cout << "5. Segitiga Pascal\n";
+      cout << "1. Piramida\n";
+      cout << "2. Belah Ketupat\n";
+      cout << "3. Hourglass\n";
+      cout << "4. Segitiga Pascal\n";
       cout << "99. Keluar dari program\n\n";
 
       cout << "Pilih pola yang mau kamu cetak: ";
       cin >> pattern;
       cout << '\n';
 
-      if ((pattern >= 1 && pattern <= 5) || pattern == 99) {
+      if ((pattern >= 1 && pattern <= 4) || pattern == 99) {
         input_valid = true;
       } else {
         cout << "Input tidak valid. Ulangi!\n\n";
@@ -55,7 +54,7 @@ namespace input {
 
     while (!input_valid) {
       cout << "1. Reguler\n";
-      if (pattern != 5) cout << "2. Outline\n";
+      if (pattern != 4) cout << "2. Outline\n";
       cout << "99. Keluar dari program\n\n";
 
       cout << "Pilih style yang kamu mau: ";
@@ -83,9 +82,6 @@ namespace input {
 }
 
 namespace pattern_regular {
-  void triangle(int &rows) {
-    cout << "Hello Regular Triangle" << endl << endl;
-  }
   void pyramid(int &rows) {
     cout << "Hello Regular Pyramid" << endl << endl;
   }
@@ -101,9 +97,6 @@ namespace pattern_regular {
 }
 
 namespace pattern_outline {
-  void triangle(int &rows) {
-    cout << "Hello Outline Triangle" << endl << endl;
-  }
   void pyramid(int &rows) {
     cout << "Hello Outline Pyramid" << endl << endl;
   }
@@ -112,9 +105,6 @@ namespace pattern_outline {
   }
   void hourglass(int &rows) {
     cout << "Hello Outline Hourglass" << endl << endl;
-  }
-  void pascal_triangle(int &rows) {
-    cout << "Hello Outline Pascal Triangle" << endl << endl;
   }
 }
 
@@ -125,31 +115,25 @@ bool gate(int &pattern, int &style) {
   cin >> rows;
 
   switch (pattern) {
-  case 1:
-    if (style == 1) pattern_regular::triangle(rows);
-    else pattern_outline::triangle(rows);
-    re_run = input::re_run();
-    break;
-  case 2:
-    if (style == 1) pattern_regular::pyramid(rows);
-    else pattern_outline::pyramid(rows);
-    re_run = input::re_run();
-    break;
-  case 3:
-    if (style == 1) pattern_regular::diamond(rows);
-    else pattern_outline::diamond(rows);
-    re_run = input::re_run();
-    break;
-  case 4:
-    if (style == 1) pattern_regular::hourglass(rows);
-    else pattern_outline::hourglass(rows);
-    re_run = input::re_run();
-    break;
-  case 5:
-    if (style == 1) pattern_regular::pascal_triangle(rows);
-    else pattern_outline::pascal_triangle(rows);
-    re_run = input::re_run();
-    break;
+    case 1:
+      if (style == 1) pattern_regular::pyramid(rows);
+      else pattern_outline::pyramid(rows);
+      re_run = input::re_run();
+      break;
+    case 2:
+      if (style == 1) pattern_regular::diamond(rows);
+      else pattern_outline::diamond(rows);
+      re_run = input::re_run();
+      break;
+    case 3:
+      if (style == 1) pattern_regular::hourglass(rows);
+      else pattern_outline::hourglass(rows);
+      re_run = input::re_run();
+      break;
+    case 4:
+      pattern_regular::pascal_triangle(rows);
+      re_run = input::re_run();
+      break;
   }
 
   return re_run;

@@ -1,0 +1,97 @@
+BEGIN of main()
+  DECLARE
+  INT pattern, style
+  BOOLEAN re_run
+
+  re_run <- TRUE
+
+  WHILE re_run IS TRUE
+    CALL input::pattern() // to get user's pattern choice
+    pattern <- input::pattern()
+    IF pattern == 99, BREAK
+
+    CALL input::style() // to get user's pattern choice
+    style <- input::style()
+    IF style == 99, BREAK
+
+    CALL gate(pattern, style)
+    re_run <- gate(pattern, style)
+END of main
+
+BEGIN of gate(INT pattern, INT style)
+  DECLARE
+  INT rows
+  BOOLEAN re_run
+
+  INPUT rows
+
+  SWITCH based on pattern
+    CASE 1:
+      IF style == 1, PRINT pyramid_regular
+      ELSE, PRINT pyramid_outline
+      CALL input::re_run()
+      re_run <- input::re_run()
+
+    CASE 2:
+      IF style == 1, PRINT diamond_regular
+      ELSE, PRINT diamond_outline
+      CALL input::re_run()
+      re_run <- input::re_run()
+
+    CASE 3:
+      IF style == 1, PRINT hourglass_regular
+      ELSE, PRINT hourglass_outline
+      CALL input::re_run()
+      re_run <- input::re_run()
+
+    CASE 4:
+      CALL pascal_triangle
+      CALL input::re_run()
+      re_run <- input::re_run()
+
+  RETURN re_run
+END of gate
+
+BEGIN of input::pattern()
+  DECLARE
+  INT pattern
+  BOOLEAN input_valid
+
+  input_valid <- false
+
+  WHILE !input_valid IS TRUE
+    INPUT pattern (1: Pyramid, 2: Diamond, 3: Hourglass, 4: Pascal Triangle, 99: Exit)
+    IF (pattern >= 1 AND pattern <= 5) OR pattern == 99
+      input_valid <- TRUE
+    ELSE
+      PRINT "Input tidak valid, Ulangi!"
+
+  RETURN pattern
+END of input::pattern
+
+BEGIN of input::style()
+  DECLARE
+  INT style
+  BOOLEAN input_valid
+
+  input_valid <- false
+
+  WHILE !input_valid IS TRUE
+    INPUT style (1: Pyramid, 2: Outline, 99: Exit)
+    IF (style >= 1 AND style <= 2) OR style == 99
+      input_valid <- TRUE
+    ELSE
+      PRINT "Input tidak valid, Ulangi!"
+
+  RETURN style
+END of input::style
+
+BEGIN of input::re_run()
+  DECLARE
+  CHAR re_run_code
+
+  PRINT "Mau mengulang program? "
+  INPUT re_run_code // Y for Yes, N for No
+
+  RETURN re_run_code in uppercase == 'Y'
+END of input::re_run
