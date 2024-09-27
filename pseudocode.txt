@@ -1,3 +1,6 @@
+GENERATE FLOWCHART FROM THIS 5 PSEUDOCODE
+
+// 1
 BEGIN of main()
   DECLARE
   INT pattern, style
@@ -18,6 +21,7 @@ BEGIN of main()
     re_run <- gate(pattern, style)
 END of main
 
+// 2
 BEGIN of gate(INT pattern, INT style)
   DECLARE
   INT rows
@@ -52,40 +56,43 @@ BEGIN of gate(INT pattern, INT style)
   RETURN re_run
 END of gate
 
+// 3
 BEGIN of input::pattern()
   DECLARE
-  INT pattern
+  INT user_choice
   BOOLEAN input_valid
 
   input_valid <- false
 
   WHILE !input_valid IS TRUE
-    INPUT pattern (1: Pyramid, 2: Diamond, 3: Hourglass, 4: Pascal Triangle, 99: Exit)
-    IF (pattern >= 1 AND pattern <= 5) OR pattern == 99
+    INPUT user_choice (1: Pyramid, 2: Diamond, 3: Hourglass, 4: Pascal Triangle, 99: Exit)
+    IF (user_choice >= 1 AND user_choice <= 5) OR user_choice == 99
       input_valid <- TRUE
     ELSE
       PRINT "Input tidak valid, Ulangi!"
 
-  RETURN pattern
+  RETURN user_choice
 END of input::pattern
 
+// 4
 BEGIN of input::style()
   DECLARE
-  INT style
+  INT user_choice
   BOOLEAN input_valid
 
   input_valid <- false
 
   WHILE !input_valid IS TRUE
-    INPUT style (1: Pyramid, 2: Outline, 99: Exit)
-    IF (style >= 1 AND style <= 2) OR style == 99
+    INPUT user_choice (1: Pyramid, 2: Outline, 99: Exit)
+    IF (user_choice >= 1 AND user_choice <= 2) OR user_choice == 99
       input_valid <- TRUE
     ELSE
       PRINT "Input tidak valid, Ulangi!"
 
-  RETURN style
+  RETURN user_choice
 END of input::style
 
+// 5
 BEGIN of input::re_run()
   DECLARE
   CHAR re_run_code
