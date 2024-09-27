@@ -1,27 +1,6 @@
 #include <iostream>
 using namespace std;
 
-/*
-* ALGORITHM MODELS
-* - Program Start
-* - User input parameter for choose pattern
-* - User input parameter for choose style (bold or outline)
-* - Store the parameter in variables
-* - Call the specific function based on input parameter
-* - Let the function do the process
-* - Output
-* - User be able to choose to re-run the program or just exit the program
-* - Program Done
-*/
-
-/**
- * * Pattern List
- * * 1 = Pyramid, 2 = Diamond, 3 = Hourglass, 4 = Pascal Triangle
- * 
- * * Style List
- * * 1 = Regular, 2 = Outline
- */
-
 namespace input {
   int pattern() {
     int pattern;
@@ -74,7 +53,7 @@ namespace input {
   bool re_run() {
     char re_run_code; // ? Yes (Y) or No (N)
 
-    cout << "Mau mengulang program? ";
+    cout << "Mau mengulang program? (Y/y: Ya, N/n: Tidak) ";
     cin >> re_run_code;
 
     return toupper(re_run_code) == 'Y'; // ? just in case user input in lowercase letter
@@ -86,7 +65,25 @@ namespace pattern_regular {
     cout << "Hello Regular Pyramid" << endl << endl;
   }
   void diamond(int &rows) {
-    cout << "Hello Regular Diamond" << endl << endl;
+    int n = rows / 2;
+    for (int i = 1; i <= n + 1; i++) {
+      for (int j = 0; j <= n + 1 - i; j++) {
+        cout << " ";
+      }
+      for (int m = 1; m <= 2 * i - 1; m++) {
+        cout << "*";
+      }
+      cout << endl;
+    }
+    for (int i = n; i > 0; i--) {
+      for (int k = 0; k <= n + 1 - i; k++) {
+        cout << " ";
+      }
+      for (int j = 1; j <= 2 * i - 1; j++) {
+        cout << "*";
+      }
+      cout << endl;
+    }
   }
   void hourglass(int &rows) {
     cout << "Hello Regular Hourglass" << endl << endl;
@@ -101,7 +98,34 @@ namespace pattern_outline {
     cout << "Hello Outline Pyramid" << endl << endl;
   }
   void diamond(int &rows) {
-    cout << "Hello Outline Diamond" << endl << endl;
+    int n = rows / 2;
+    for (int i = 1; i <= n + 1; i++){
+        for (int j = i; j < n + 1; j++){
+            cout << " ";
+        }
+        for (int k = 1; k <= 2 * i - 1; k++){
+            if (k == 1 || k == (2 * i - 1)){
+                cout << "*";
+            } else {
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
+    for (int i = n; i > 0; i--){
+        for (int j = i; j < n + 1; j++){
+            cout << " ";
+        }
+        for (int k = 1; k <= 2 * i - 1; k++){
+            if (k == 1 || k == (2 * i - 1)){
+                cout << "*";
+            }
+            else{
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
   }
   void hourglass(int &rows) {
     cout << "Hello Outline Hourglass" << endl << endl;
