@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 namespace input {
@@ -89,7 +90,31 @@ namespace pattern_regular {
     cout << "Hello Regular Hourglass" << endl << endl;
   }
   void pascal_triangle(int &rows) {
-    cout << "Hello Regular Pascal Triangle" << endl << endl;
+    vector<vector<int>> result = {};
+
+    for (int i = 0; i < rows; i++) {
+      if (result.size() == 0) {
+        result.push_back({1});
+      } else {
+        vector<int> prev = result[i - 1];
+        vector<int> new_row = {1, 1};
+        for (int j = 0; j < prev.size() - 1; j++) {
+            int sum = prev[j] + prev[j + 1];
+            new_row.insert(new_row.begin() + 1, sum);
+        }
+        result.push_back(new_row);
+      }
+    }
+
+    for (int i = 0; i < result.size(); i++) {
+      for (int k = result.size() - 1; k > i; k--) {
+        cout << " ";
+      }
+      for (int j = 0; j < result[i].size(); j++) {
+        cout << result[i][j] << " ";
+      }
+      cout << endl;
+    }
   }
 }
 
