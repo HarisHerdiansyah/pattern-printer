@@ -2,6 +2,17 @@
 #include <vector>
 using namespace std;
 
+int fact(int n) {
+  if (n == 1 || n == 0) {
+    return 1;
+  }
+  return n * fact(n - 1);
+}
+
+int combination(int n, int r) {
+  return fact(n) / (fact(n - r) * fact(r));
+}
+
 namespace input {
   int pattern() {
     int pattern;
@@ -90,28 +101,13 @@ namespace pattern_regular {
     cout << "Hello Regular Hourglass" << endl << endl;
   }
   void pascal_triangle(int &rows) {
-    vector<vector<int>> result = {};
-
     for (int i = 0; i < rows; i++) {
-      if (result.size() == 0) {
-        result.push_back({1});
-      } else {
-        vector<int> prev = result[i - 1];
-        vector<int> new_row = {1, 1};
-        for (int j = 0; j < prev.size() - 1; j++) {
-            int sum = prev[j] + prev[j + 1];
-            new_row.insert(new_row.begin() + 1, sum);
-        }
-        result.push_back(new_row);
-      }
-    }
-
-    for (int i = 0; i < result.size(); i++) {
-      for (int k = result.size() - 1; k > i; k--) {
+      for (int k = rows; k > i; k--) {
         cout << " ";
       }
-      for (int j = 0; j < result[i].size(); j++) {
-        cout << result[i][j] << " ";
+
+      for (int j = 0; j <= i; j++) {
+        cout << combination(i, j) << " ";
       }
       cout << endl;
     }
