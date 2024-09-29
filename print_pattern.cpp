@@ -51,13 +51,13 @@ namespace input {
     return style;
   }
 
-  bool re_run() {
-    char re_run_code; // ? Yes (Y) or No (N)
+  bool is_re_run() {
+    char confirmation_code; // ? Yes (Y) or No (N)
 
-    cout << "Mau mengulang program? (Y/y: Ya, N/n: Tidak) ";
-    cin >> re_run_code;
+    cout << "Mau mengulang program (Y/y: Ya, N/n: Tidak) ? ";
+    cin >> confirmation_code;
 
-    return toupper(re_run_code) == 'Y'; // ? just in case user input in lowercase letter
+    return toupper(confirmation_code) == 'Y'; // ? just in case user input in lowercase letter
   }
 }
 
@@ -167,21 +167,21 @@ bool gate(int &pattern, int &style) {
     case 1:
       if (style == 1) pattern_regular::pyramid(rows);
       else pattern_outline::pyramid(rows);
-      re_run = input::re_run();
+      re_run = input::is_re_run();
       break;
     case 2:
       if (style == 1) pattern_regular::diamond(rows);
       else pattern_outline::diamond(rows);
-      re_run = input::re_run();
+      re_run = input::is_re_run();
       break;
     case 3:
       if (style == 1) pattern_regular::hourglass(rows);
       else pattern_outline::hourglass(rows);
-      re_run = input::re_run();
+      re_run = input::is_re_run();
       break;
     case 4:
       pattern_regular::pascal_triangle(rows);
-      re_run = input::re_run();
+      re_run = input::is_re_run();
       break;
   }
 
@@ -201,7 +201,5 @@ int main() {
 
     re_run = gate(pattern, style);
   }
-
-
   return 0;
 }
